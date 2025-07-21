@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Poppins, Fira_Mono } from "next/font/google";
+import { Orbitron, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "700"],
 });
-
-const firaMono = Fira_Mono({
-  variable: "--font-fira-mono",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${firaMono.variable} antialiased`}
+        className={`${orbitron.variable} ${ibmPlexMono.variable} antialiased`}
       >
         {children}
       </body>

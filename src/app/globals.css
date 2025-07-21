@@ -1,36 +1,160 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111215;
-  --foreground: #F7F7F7;
-  --accent1: #ffb347; /* warm orange */
-  --accent2: #ff7f50; /* coral */
-  --accent3: #ff6f91; /* warm pink */
-  --accent4: #ffd700; /* gold */
-  --accent5: #ff4e50; /* red */
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent1: var(--accent1);
-  --color-accent2: var(--accent2);
-  --color-accent3: var(--accent3);
-  --color-accent4: var(--accent4);
-  --color-accent5: var(--accent5);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-fira-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111215;
-    --foreground: #F7F7F7;
-  }
+  --background: #0a101f;
+  --foreground: #f7fafd;
+  --accent1: #00fff7; /* bright cyan */
+  --accent2: #3ec6ff; /* soft blue */
+  --accent3: #00e0ff; /* teal blue */
+  --accent4: #1e90ff; /* secondary blue */
+  --accent5: #00bfae; /* teal */
+  --glass-bg: rgba(10, 16, 31, 0.75);
+  --glass-blur: 12px;
+  --font-heading: var(--font-orbitron);
+  --font-body: var(--font-ibm-plex-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1.5px solid rgba(62,198,255,0.10);
+  box-shadow: 0 2px 16px 0 rgba(62,198,255,0.06);
+  border-radius: 1.25rem;
+}
+
+.neon, .button-accent {
+  box-shadow: 0 0 0 0 var(--accent1);
+  border: 1.5px solid var(--accent2);
+  background: rgba(62,198,255,0.08);
+  color: var(--accent2);
+  transition: box-shadow 0.2s, border 0.2s, color 0.2s, background 0.2s;
+  border-radius: 0.75rem;
+}
+.neon:hover, .neon:focus, .button-accent:hover, .button-accent:focus {
+  box-shadow: 0 2px 12px 0 var(--accent2);
+  color: var(--accent1);
+  background: rgba(0,255,247,0.10);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s linear infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(62,198,255,0.03) 0 1px, transparent 1px 48px), repeating-linear-gradient(180deg, rgba(0,255,247,0.03) 0 1px, transparent 1px 48px);
+  opacity: 0.5;
+}
+
+.card-3d {
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+  will-change: transform, box-shadow;
+  border-radius: 1.25rem;
+}
+.card-3d:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 4px 24px 0 var(--accent2);
+  border-color: var(--accent1);
+}
+.card-3d:active {
+  transform: scale(0.98);
+}
+
+.underline-animate {
+  position: relative;
+  color: var(--accent2);
+  font-weight: 600;
+}
+.underline-animate::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.underline-animate:hover::after, .underline-animate:focus::after {
+  transform: scaleX(1);
+}
+
+section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Make gradients and blobs more subtle */
+.bg-gradient-to-r, .bg-gradient-to-l, .bg-gradient-to-t, .bg-gradient-to-b {
+  filter: saturate(0.7) brightness(0.9);
+  opacity: 0.85;
+}
+
+.blur-2xl, .blur-3xl {
+  filter: blur(32px) saturate(0.7) brightness(0.8);
+  opacity: 0.3;
+}
+
+/* Interactive element effects */
+button, a, .cursor-pointer {
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s, transform 0.2s;
+}
+button:focus, button:hover, a:focus, a:hover {
+  color: var(--accent1);
+  background: rgba(125,249,255,0.08);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent1), 0 2px 8px 0 rgba(125,249,255,0.08);
+}
+
+/* Section dividers and overlays more subtle */
+svg, .shadow-xl, .shadow-2xl {
+  opacity: 0.7 !important;
+}
+
+/* Remove heavy drop shadows */
+.drop-shadow, .shadow-lg, .shadow-xl, .shadow-2xl {
+  filter: none !important;
+  opacity: 0.7 !important;
+}
+
+/* For accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent1);
+  outline-offset: 2px;
 }
