@@ -4,6 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const navSections = [
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "contact", label: "Contact" },
+];
+
 const socialLinks = [
   { href: "/Tanvi_Ranade_Resume.pdf", label: "Resume" },
   { href: "mailto:tranade1@jhu.edu", label: "Email" },
@@ -23,6 +31,11 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Ensure smooth scrolling for anchor links
+  if (typeof window !== 'undefined') {
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4">
       {/* Navigation */}
@@ -30,12 +43,19 @@ export default function Home() {
         <div className={`w-full h-full transition-colors duration-300 ${navScrolled ? "bg-[#070d16] shadow-md" : "bg-background"}`} />
       </div>
       <nav className="w-full max-w-3xl mx-auto flex justify-between items-center py-6 sticky top-0 z-30 bg-transparent">
-        <span className="text-lg font-bold tracking-tight">Tanvi Ranade</span>
+        <a href="#" className="font-tech-heading text-2xl font-normal tracking-widest flex items-center focus:outline-none" style={{ color: 'var(--accent1)'}}>
+          <span style={{ fontWeight: 400}}>T</span>
+          <span style={{ fontWeight: 400, marginLeft: '0.1em' }}>R</span>
+        </a>
           <div className="flex gap-6 text-sm">
-            {socialLinks.map(link => (
-              <Link key={link.label} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="hover:text-accent2 transition-colors font-medium">
-                {link.label}
-              </Link>
+            {navSections.map(section => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`hover:text-accent2 transition-colors font-medium`}
+              >
+                {section.label}
+              </a>
             ))}
           </div>
         </nav>
@@ -54,12 +74,12 @@ export default function Home() {
           </div>
         </section>
         {/* About Section */}
-        <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
+        <section id="about" className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">About</h2>
           <p className="text-base">Hi! I'm a 3rd year undergraduate interested in software engineering, AI/ML, data science, and medical applications. This past summer I interned at Aryn, where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper. I'm currently improving a website for the JHU Physics & Astronomy and on the student developer team for Semester.ly. In the past I worked on an iOS and Android app for dearYou Health, and have had experience working as an R&D intern at CurveAssure as a Full-Stack Software Developer. On campus, I'm the president of WiCS@JHU, a counselor for Camp Kesem, and on a dance team, Blue Jay Bhangra. Recently, I joined Dr. Suchi Saria's lab for Machine Learning in Healthcare. I'm also currently an Intro Algorithms TA and have previously been one for Data Structures and Intermediate Programming (C/C++).</p>
         </section>
         {/* Skills Section */}
-        <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
+        <section id="skills" className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Skills</h2>
           <ul className="flex flex-wrap gap-3">
             {['JavaScript', 'HTML', 'CSS', 'TypeScript', 'React', 'Redux', 'Python', 'Java', 'C/C++', 'Databases', 'API Calls', 'Node.js', 'Express.js', 'Nest.js'].map(skill => (
@@ -70,7 +90,7 @@ export default function Home() {
           </ul>
         </section>
         {/* Projects Section */}
-        <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
+        <section id="projects" className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Projects</h2>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
@@ -100,7 +120,7 @@ export default function Home() {
           </div>
         </section>
         {/* Experience Section */}
-        <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
+        <section id="experience" className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Experience</h2>
           <ul className="flex flex-col gap-2">
             <li><span className="font-semibold">Aryn</span> — Software Engineering Intern (Summer 2023): Developed an LLM-based query planning and execution pipeline for analytics on unstructured data. Co-authored a systems paper.</li>
@@ -116,7 +136,7 @@ export default function Home() {
           </ul>
         </section>
         {/* Contact Section */}
-        <section className="w-full flex flex-col gap-4 py-8">
+        <section id="contact" className="w-full flex flex-col gap-4 py-8 scroll-mt-24">
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Contact</h2>
           <div className="flex flex-col gap-2 items-center">
             <div className="text-base">tranade1@jhu.edu</div>
