@@ -18,7 +18,7 @@ const navSections = [
 ];
 
 const socialLinks = [
-  { href: "/Tanvi_Ranade_Resume.pdf", label: "Resume" },
+  { href: "./Tanvi_Ranade_Resume.pdf", label: "Resume" },
   { href: "mailto:tranade1@jhu.edu", label: "Email" },
   { href: "https://www.linkedin.com/in/tanvi-ranade/", label: "LinkedIn" },
   { href: "https://github.com/tranade", label: "GitHub" },
@@ -97,7 +97,7 @@ export default function Home() {
       <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-20 pb-20 px-4">
         {/* Hero Section */}
         <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center w-full">
-          <Image src="/profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
+          <Image src="./profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-center tech-title tech-heading max-w-xs sm:max-w-none mx-auto">Tanvi Ranade</h1>
           <div className="font-tech-heading flex items-center justify-center min-h-[2em] mt-0 max-w-xs sm:max-w-none mx-auto">
             <span className="text-accent1 text-base sm:text-xl" style={{ letterSpacing: '0.18em' }}>
