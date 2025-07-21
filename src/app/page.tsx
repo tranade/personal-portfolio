@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiDevpost } from "react-icons/si";
@@ -70,33 +71,36 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4">
       {/* Navigation */}
-      <div className="fixed top-0 left-0 w-screen h-[75px] z-20 pointer-events-none">
+      <div className="fixed top-0 left-0 w-screen h-[80px] z-20 pointer-events-none">
         <div className={`w-full h-full transition-colors duration-300 ${navScrolled ? "bg-[#070d16] shadow-md" : "bg-background"}`} />
       </div>
-      <nav className="w-full max-w-3xl mx-auto flex justify-between items-center py-6 sticky top-0 z-30 bg-transparent">
+      <nav className="w-full max-w-3xl mx-auto flex justify-between items-center py-6 px-4 sm:px-0 sticky top-0 z-30 bg-transparent">
         <a href="#" className="font-tech-heading text-2xl font-normal tracking-widest flex items-center focus:outline-none" style={{ color: 'var(--accent1)'}}>
           <span style={{ fontWeight: 400}}>T</span>
           <span style={{ fontWeight: 400, marginLeft: '0.1em' }}>R</span>
         </a>
-          <div className="flex gap-6 text-sm">
-            {navSections.map(section => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className={`hover:text-accent2 transition-colors font-medium`}
+        {/* Desktop nav links */}
+        <div className="hidden sm:flex gap-6 text-sm">
+          {navSections.map(section => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              className={`hover:text-accent2 transition-colors font-medium`}
               >
                 {section.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-20 pb-20">
+            </a>
+          ))}
+        </div>
+        {/* Mobile hamburger */}
+        <MobileNav navSections={navSections} />
+      </nav>
+      <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-20 pb-20 px-4">
         {/* Hero Section */}
-        <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center">
+        <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center w-full">
           <Image src="/profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center tech-title tech-heading">Tanvi Ranade</h1>
-          <div className="font-tech-heading flex items-center justify-center min-h-[2em] mt-0">
-            <span className="text-accent1 text-lg sm:text-xl" style={{ letterSpacing: '0.18em' }}>
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-center tech-title tech-heading max-w-xs sm:max-w-none mx-auto">Tanvi Ranade</h1>
+          <div className="font-tech-heading flex items-center justify-center min-h-[2em] mt-0 max-w-xs sm:max-w-none mx-auto">
+            <span className="text-accent1 text-base sm:text-xl" style={{ letterSpacing: '0.18em' }}>
               {typedSubtitle}
               <motion.span
                 className="font-mono text-lg sm:text-xl"
@@ -108,7 +112,7 @@ export default function Home() {
               </motion.span>
             </span>
           </div>
-          <div className="flex gap-4 mt-2 flex-wrap justify-center">
+          <div className="flex flex-wrap gap-4 mt-2 justify-center w-full max-w-xs sm:max-w-none mx-auto">
             {socialLinks.map(link => {
               if (link.label === "LinkedIn") {
                 return (
@@ -249,12 +253,12 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Contact</h2>
           <div className="flex flex-col gap-2 items-center">
             <div className="text-base">tranade1@jhu.edu</div>
-            <div className="flex gap-4 mt-2">
+              <div className="flex gap-4 mt-2">
               <a href="mailto:tranade1@jhu.edu" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" aria-label="Email" title="Email" target="_blank" rel="noopener noreferrer"><FiMail className="text-accent2 text-xl" /></a>
               <a href="https://www.linkedin.com/in/tanviranade/" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><FaLinkedin className="text-accent2 text-xl" /></a>
               <a href="https://github.com/tranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><FaGithub className="text-accent2 text-xl" /></a>
               <a href="https://devpost.com/tanviranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="Devpost" title="Devpost"><SiDevpost className="text-accent2 text-xl" /></a>
-            </div>
+              </div>
           </div>
         </motion.section>
       </main>
@@ -262,6 +266,56 @@ export default function Home() {
       <footer className="w-full text-center text-xs text-accent2 py-6 mt-8">
         &copy; {new Date().getFullYear()} Tanvi Ranade. All rights reserved.
       </footer>
+    </div>
+  );
+}
+
+// MobileNav component
+type NavSection = { id: string; label: string };
+function MobileNav({ navSections }: { navSections: NavSection[] }) {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (open && menuRef.current && !(menuRef.current as HTMLDivElement).contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+  return (
+    <div className="sm:hidden relative">
+      <button
+        className="mobile-nav-btn flex flex-col justify-center items-center w-8 h-8 focus:outline-none z-50 bg-transparent border-none shadow-none outline-none"
+        style={{ background: 'none' }}
+        aria-label="Open navigation menu"
+        onClick={() => setOpen(v => !v)}
+        tabIndex={0}
+      >
+        <span className={`block w-6 h-0.5 bg-accent1 mb-1 transition-transform duration-200`} style={{backgroundColor: 'var(--accent1)', zIndex: 20, opacity: open ? 1 : 1, transform: open ? 'rotate(45deg) translateY(0.375rem)' : 'none'}}></span>
+        <span className={`block w-6 h-0.5 bg-accent1 mb-1 transition-opacity duration-200`} style={{backgroundColor: 'var(--accent1)', zIndex: 20, opacity: open ? 0 : 1}}></span>
+        <span className={`block w-6 h-0.5 bg-accent1 transition-transform duration-200`} style={{backgroundColor: 'var(--accent1)', zIndex: 20, opacity: open ? 1 : 1, transform: open ? 'rotate(-45deg) translateY(-0.375rem)' : 'none'}}></span>
+      </button>
+      {open && (
+        <>
+          {/* Overlay */}
+          <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setOpen(false)} aria-hidden="true" />
+          {/* Menu */}
+          <div ref={menuRef} className="absolute right-0 mt-2 w-40 rounded-lg !bg-[#070d16] border border-accent2/30 shadow-lg py-2 z-50 flex flex-col" style={{ backgroundColor: '#070d16' }}>
+            {navSections.map((section: NavSection) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className="px-4 py-2 text-accent2 hover:text-accent1 font-medium text-base text-left"
+                onClick={() => setOpen(false)}
+              >
+                {section.label}
+              </a>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

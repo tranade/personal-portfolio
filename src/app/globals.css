@@ -209,3 +209,9 @@ nav a:focus, nav a:hover {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* Remove outline/box-shadow for mobile nav button */
+.mobile-nav-btn:focus, .mobile-nav-btn:hover {
+  outline: none !important;
+  box-shadow: none !important;
+}
