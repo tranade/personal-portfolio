@@ -66,7 +66,7 @@ export default function Home() {
       }, 400);
     }
     return () => clearTimeout(timeout);
-  }, [typedSubtitle, isDeleting, subtitleIndex]);
+  }, [typedSubtitle, isDeleting, subtitleIndex, subtitles]);
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4">
@@ -159,9 +159,9 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">About</h2>
           <div className="font-tech-heading text-accent1 text-lg sm:text-xl" style={{ letterSpacing: '0.18em' }}>
-            JHU '26 • BS in CS + BME • 3 + 1 MSE in CS
+            JHU &apos;26 • BS in CS + BME • 3 + 1 MSE in CS
           </div>
-          <p className="text-base">Hi! I'm a 3rd year undergraduate interested in software engineering, AI/ML, data science, and medical applications. This past summer I interned at Aryn, where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper. I'm currently improving a website for the JHU Physics & Astronomy and on the student developer team for Semester.ly. In the past I worked on an iOS and Android app for dearYou Health, and have had experience working as an R&D intern at CurveAssure as a Full-Stack Software Developer. On campus, I'm the president of WiCS@JHU, a counselor for Camp Kesem, and on a dance team, Blue Jay Bhangra. Recently, I joined Dr. Suchi Saria's lab for Machine Learning in Healthcare. I'm also currently an Intro Algorithms TA and have previously been one for Data Structures and Intermediate Programming (C/C++).</p>
+          <p className="text-base">Hi! I&apos;m a 3rd year undergraduate interested in software engineering, AI/ML, data science, and medical applications. This past summer I interned at Aryn, where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper. I&apos;m currently improving a website for the JHU Physics &amp; Astronomy and on the student developer team for Semester.ly. In the past I worked on an iOS and Android app for dearYou Health, and have had experience working as an R&amp;D intern at CurveAssure as a Full-Stack Software Developer. On campus, I&apos;m the president of WiCS@JHU, a counselor for Camp Kesem, and on a dance team, Blue Jay Bhangra. Recently, I joined Dr. Suchi Saria&apos;s lab for Machine Learning in Healthcare. I&apos;m also currently an Intro Algorithms TA and have previously been one for Data Structures and Intermediate Programming (C/C++).</p>
         </motion.section>
         {/* Skills Section */}
         <motion.section
@@ -235,8 +235,8 @@ export default function Home() {
             <li><span className="font-semibold">CurveAssure</span> — R&D Intern, Full-Stack SWE (2021): Worked on full-stack software for medical device analytics.</li>
             <li><span className="font-semibold">JHU Physics & Astronomy</span> — Web Developer (2023 - Present): Improving and maintaining the department website.</li>
             <li><span className="font-semibold">WiCS@JHU</span> — President (2023 - Present): Leading the Women in Computer Science chapter at JHU.</li>
-            <li><span className="font-semibold">Camp Kesem</span> — Counselor (2022 - Present): Counselor for a national nonprofit supporting children through and beyond a parent's cancer.</li>
-            <li><span className="font-semibold">Blue Jay Bhangra</span> — Dancer (2021 - Present): Member of JHU's competitive bhangra dance team.</li>
+            <li><span className="font-semibold">Camp Kesem</span> — Counselor (2022 - Present): Counselor for a national nonprofit supporting children through and beyond a parent&apos;s cancer.</li>
+            <li><span className="font-semibold">Blue Jay Bhangra</span> — Dancer (2021 - Present): Member of JHU&apos;s competitive bhangra dance team.</li>
             <li><span className="font-semibold">JHU ML in Healthcare Lab</span> — Researcher (2024 - Present): Research in AI/ML for healthcare under Dr. Suchi Saria.</li>
             <li><span className="font-semibold">Teaching Assistant (JHU)</span> (2022 - Present): Intro Algorithms, Data Structures, Intermediate Programming (C/C++).</li>
           </ul>

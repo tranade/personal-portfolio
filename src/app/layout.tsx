@@ -14,7 +14,7 @@ const shareTechMono = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tanvi Ranade Portfolio",
+  title: "Tanvi Ranade | Portfolio",
   description: "Personal portfolio of Tanvi Ranade",
 };
 
@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={`${rubik.variable} ${shareTechMono.variable} antialiased`}
