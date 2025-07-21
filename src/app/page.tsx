@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const socialLinks = [
   { href: "/Tanvi_Ranade_Resume.pdf", label: "Resume" },
@@ -12,22 +13,35 @@ const socialLinks = [
 ];
 
 export default function Home() {
+  const [navScrolled, setNavScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setNavScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-4">
       {/* Navigation */}
-      <nav className="w-full max-w-3xl mx-auto flex justify-between items-center py-6 mb-8 sticky top-0 bg-background z-10">
+      <div className="fixed top-0 left-0 w-screen h-[75px] z-20 pointer-events-none">
+        <div className={`w-full h-full transition-colors duration-300 ${navScrolled ? "bg-[#070d16] shadow-md" : "bg-background"}`} />
+      </div>
+      <nav className="w-full max-w-3xl mx-auto flex justify-between items-center py-6 sticky top-0 z-30 bg-transparent">
         <span className="text-lg font-bold tracking-tight">Tanvi Ranade</span>
-        <div className="flex gap-6 text-sm">
-          {socialLinks.map(link => (
-            <Link key={link.label} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="hover:text-accent2 transition-colors font-medium">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </nav>
+          <div className="flex gap-6 text-sm">
+            {socialLinks.map(link => (
+              <Link key={link.label} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="hover:text-accent2 transition-colors font-medium">
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
       <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-20 pb-20">
         {/* Hero Section */}
-        <section className="flex flex-col items-center gap-6 pt-12 pb-8">
+        <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center">
           <Image src="/profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center">Tanvi Ranade</h1>
           <p className="text-lg text-center text-accent2 font-medium">Johns Hopkins '26 — B.S. Computer Science, B.S. Biomedical Engineering</p>
