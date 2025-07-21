@@ -186,3 +186,26 @@ nav a:focus, nav a:hover {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* Remove outline on hover/focus for social links */
+.social-link:focus, .social-link:hover {
+  color: var(--accent1) !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Utility class for techy heading font */
+.font-tech-heading {
+  font-family: var(--font-heading), Arial, Helvetica, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+/* Project links hover/focus effect matches navbar */
+.project-link:focus, .project-link:hover {
+  color: var(--accent1) !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
