@@ -10,8 +10,8 @@
   --accent5: #00bfae; /* teal */
   --glass-bg: rgba(10, 16, 31, 0.75);
   --glass-blur: 12px;
-  --font-heading: var(--font-orbitron);
-  --font-body: var(--font-ibm-plex-mono);
+  --font-heading: var(--font-rubik);
+  --font-body: var(--font-rubik);
 }
 
 body {
