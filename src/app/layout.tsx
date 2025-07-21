@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Rubik, Share_Tech_Mono } from "next/font/google";
-import "./globals.css";
+import "src/app/globals.css";
 
 const rubik = Rubik({
   variable: "--font-rubik",
