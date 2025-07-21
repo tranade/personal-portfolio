@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Rubik, Share_Tech_Mono } from "next/font/google";
-import "src/app/globals.css";
+import "./globals.css";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="./favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={`${rubik.variable} ${shareTechMono.variable} antialiased`}
