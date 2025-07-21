@@ -3,14 +3,14 @@
 :root {
   --background: #0a101f;
   --foreground: #f7fafd;
-  --accent1: #00fff7; /* bright cyan */
-  --accent2: #3ec6ff; /* soft blue */
+  --accent1: #00eaff; /* techy cyan */
+  --accent2: #1ec8e7; /* techy blue */
   --accent3: #00e0ff; /* teal blue */
   --accent4: #1e90ff; /* secondary blue */
   --accent5: #00bfae; /* teal */
   --glass-bg: rgba(10, 16, 31, 0.75);
   --glass-blur: 12px;
-  --font-heading: var(--font-rubik);
+  --font-heading: var(--font-tech-heading);
   --font-body: var(--font-rubik);
 }
 
@@ -24,11 +24,25 @@ body {
   line-height: 1.7;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .tech-heading {
   font-family: var(--font-heading), Arial, Helvetica, sans-serif;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: var(--foreground);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--accent1);
+}
+
+.tech-title {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2) 60%, var(--accent1));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 8s linear infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .glass {
@@ -157,4 +171,18 @@ svg, .shadow-xl, .shadow-2xl {
 :focus-visible {
   outline: 2px solid var(--accent1);
   outline-offset: 2px;
+}
+
+.project-title {
+  color: var(--foreground) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  text-shadow: none !important;
+}
+
+nav a:focus, nav a:hover {
+  outline: none !important;
+  box-shadow: none !important;
 }

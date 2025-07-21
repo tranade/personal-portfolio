@@ -43,7 +43,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center">
           <Image src="/profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center">Tanvi Ranade</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center tech-title tech-heading">Tanvi Ranade</h1>
           <p className="text-lg text-center text-accent2 font-medium">Johns Hopkins '26 — B.S. Computer Science, B.S. Biomedical Engineering</p>
           <div className="flex gap-4 mt-2 flex-wrap justify-center">
             {socialLinks.map(link => (
@@ -55,12 +55,12 @@ export default function Home() {
         </section>
         {/* About Section */}
         <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
-          <h2 className="text-2xl font-bold mb-2">About</h2>
+          <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">About</h2>
           <p className="text-base">Hi! I'm a 3rd year undergraduate interested in software engineering, AI/ML, data science, and medical applications. This past summer I interned at Aryn, where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper. I'm currently improving a website for the JHU Physics & Astronomy and on the student developer team for Semester.ly. In the past I worked on an iOS and Android app for dearYou Health, and have had experience working as an R&D intern at CurveAssure as a Full-Stack Software Developer. On campus, I'm the president of WiCS@JHU, a counselor for Camp Kesem, and on a dance team, Blue Jay Bhangra. Recently, I joined Dr. Suchi Saria's lab for Machine Learning in Healthcare. I'm also currently an Intro Algorithms TA and have previously been one for Data Structures and Intermediate Programming (C/C++).</p>
         </section>
         {/* Skills Section */}
         <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
-          <h2 className="text-2xl font-bold mb-2">Skills</h2>
+          <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Skills</h2>
           <ul className="flex flex-wrap gap-3">
             {['JavaScript', 'HTML', 'CSS', 'TypeScript', 'React', 'Redux', 'Python', 'Java', 'C/C++', 'Databases', 'API Calls', 'Node.js', 'Express.js', 'Nest.js'].map(skill => (
               <li key={skill} className="px-3 py-1 rounded-full border border-accent2 text-accent2 text-sm font-semibold bg-background/80">
@@ -71,10 +71,10 @@ export default function Home() {
         </section>
         {/* Projects Section */}
         <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
-          <h2 className="text-2xl font-bold mb-2">Projects</h2>
+          <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Projects</h2>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg">PlatePal</h3>
+              <h3 className="font-semibold text-lg project-title">PlatePal</h3>
               <p className="text-sm">A nutrition and meal planning app.</p>
               <div className="flex gap-2 mt-2">
                 <a href="https://github.com/tranade/platepal" className="text-accent2 hover:underline text-sm font-medium" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -82,7 +82,7 @@ export default function Home() {
               </div>
             </div>
             <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg">TerraVision</h3>
+              <h3 className="font-semibold text-lg project-title">TerraVision</h3>
               <p className="text-sm">A full-stack mapping and visualization tool.</p>
               <div className="flex gap-2 mt-2">
                 <a href="#" className="text-accent2 hover:underline text-sm font-medium">Backend</a>
@@ -90,18 +90,18 @@ export default function Home() {
               </div>
             </div>
             <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg">MindMatch</h3>
+              <h3 className="font-semibold text-lg project-title">MindMatch</h3>
               <p className="text-sm">Coming soon!</p>
             </div>
             <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg">HealthTrackr</h3>
+              <h3 className="font-semibold text-lg project-title">HealthTrackr</h3>
               <p className="text-sm">A health and fitness dashboard.</p>
             </div>
           </div>
         </section>
         {/* Experience Section */}
         <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
-          <h2 className="text-2xl font-bold mb-2">Experience</h2>
+          <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Experience</h2>
           <ul className="flex flex-col gap-2">
             <li><span className="font-semibold">Aryn</span> — Software Engineering Intern (Summer 2023): Developed an LLM-based query planning and execution pipeline for analytics on unstructured data. Co-authored a systems paper.</li>
             <li><span className="font-semibold">Semester.ly</span> — Student Developer (2023 - Present): Full-stack development for a course scheduling platform used by students at multiple universities.</li>
@@ -115,30 +115,9 @@ export default function Home() {
             <li><span className="font-semibold">Teaching Assistant (JHU)</span> (2022 - Present): Intro Algorithms, Data Structures, Intermediate Programming (C/C++).</li>
           </ul>
         </section>
-        {/* Testimonials Section */}
-        <section className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800">
-          <h2 className="text-2xl font-bold mb-2">Testimonials</h2>
-          <div className="flex flex-col gap-4">
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <div className="text-base italic">"Tanvi is a fantastic collaborator and always brings creative solutions to the table. Her technical skills and positive attitude made a huge impact on our project!"</div>
-              <div className="mt-2 text-sm font-semibold text-accent2">Alex Smith</div>
-              <div className="text-xs text-muted-foreground">Teammate, Aryn</div>
-            </div>
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <div className="text-base italic">"Working with Tanvi was a pleasure. She is organized, driven, and a great leader."</div>
-              <div className="mt-2 text-sm font-semibold text-accent2">Priya Patel</div>
-              <div className="text-xs text-muted-foreground">President, WiCS@JHU</div>
-            </div>
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <div className="text-base italic">"Tanvi's ability to quickly learn new technologies and contribute meaningfully is impressive. Highly recommend!"</div>
-              <div className="mt-2 text-sm font-semibold text-accent2">Jordan Lee</div>
-              <div className="text-xs text-muted-foreground">Mentor, Semester.ly</div>
-            </div>
-          </div>
-        </section>
         {/* Contact Section */}
         <section className="w-full flex flex-col gap-4 py-8">
-          <h2 className="text-2xl font-bold mb-2">Contact</h2>
+          <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Contact</h2>
           <div className="flex flex-col gap-2 items-center">
             <div className="text-base">tranade1@jhu.edu</div>
             <div className="flex gap-4 mt-2">
