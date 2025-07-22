@@ -28,58 +28,10 @@ const socialLinks = [
 // --- PROJECTS DATA ---
 const allProjects = [
   {
-    title: "PlatePal",
-    description: "A nutrition and meal planning app.",
-    tags: ["sustainability", "website", "hackathon"],
-    image: undefined, // Add image path if available
-    links: [
-      { label: "GitHub", url: "https://github.com/tranade/platepal" },
-      { label: "Live Demo", url: "#" },
-    ],
-  },
-  {
-    title: "MindMatch",
-    description: "Coming soon!",
-    tags: ["healthcare", "mobile app"],
-    image: undefined,
-    links: [],
-  },
-  {
-    title: "TerraVision Technologies",
-    description: "A full-stack mapping and visualization tool.",
-    tags: ["sustainability", "website", "hackathon"],
-    image: undefined,
-    links: [
-      { label: "Backend", url: "#" },
-      { label: "Frontend", url: "#" },
-    ],
-  },
-  {
     title: "Brody Cafe App",
     description: "Online ordering and cafe management app for JHU's beloved Brody Cafe.",
     tags: ["local business", "mobile app"],
     image: "/brodyapp.png",
-    links: [],
-  },
-  {
-    title: "SRT Controller",
-    description: "Astronomy website for controlling the SRT.",
-    tags: ["astronomy", "website"],
-    image: undefined,
-    links: [],
-  },
-  {
-    title: "InFluo",
-    description: "Healthcare medical device data analysis.",
-    tags: ["healthcare", "medical device", "data analysis"],
-    image: undefined,
-    links: [],
-  },
-  {
-    title: "iMEDS",
-    description: "Healthcare medical device.",
-    tags: ["healthcare", "medical device"],
-    image: undefined,
     links: [],
   },
   {
@@ -89,13 +41,66 @@ const allProjects = [
     image: "/solesense.png",
     links: [],
   },
+  {
+    title: "PlatePal",
+    description: "An ingredient-exchange and meal planning app for college students.",
+    tags: ["sustainability", "website", "hackathon"],
+    image: undefined,
+    links: [
+      { label: "GitHub", url: "https://github.com/tranade/platepal" },
+      { label: "Live Demo", url: "#" },
+    ],
+  },
+  {
+    title: "SRT Controller",
+    description: "Website to schedule/submit observation requests for the Small Remote Telescope on top of JHU's Physics & Astronomy building.",
+    tags: ["astronomy", "website"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "MindMatch",
+    description: "App to connect students with mental health professionals.",
+    tags: ["healthcare", "mobile app"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "TerraVision Technologies",
+    description: "Analyze soil composition and get personalized recommendations on what to include in your crop rotation.",
+    tags: ["sustainability", "website", "hackathon"],
+    image: undefined,
+    links: [
+      { label: "Backend", url: "#" },
+      { label: "Frontend", url: "#" },
+    ],
+  },
+  {
+    title: "InFluo",
+    description: "Novel drain management system to prevent clogging in percutaneous drainage catheters.",
+    tags: ["healthcare", "medical device"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "iMEDS",
+    description: "Automated Sedation Assessment in the Pediatric Intensive Care Unit.",
+    tags: ["healthcare", "medical device", "data analysis"],
+    image: undefined,
+    links: [],
+  },
 ];
 
 export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false);
 
   // --- PROJECTS FILTER STATE (moved inside component) ---
-  const allTags = Array.from(new Set(allProjects.flatMap(p => p.tags)));
+  const tagPriority = ["website", "mobile app", "medical device", "data analysis", "hackathon"];
+  const allTagsSet = new Set(allProjects.flatMap(p => p.tags));
+  const allTags = [
+    ...tagPriority.filter(tag => allTagsSet.has(tag)),
+    ...Array.from(allTagsSet).filter(tag => !tagPriority.includes(tag)).sort()
+  ];
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -247,7 +252,7 @@ export default function Home() {
         {/* About Section */}
         <motion.section
           id="about"
-          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -263,7 +268,7 @@ export default function Home() {
         {/* Skills Section */}
         <motion.section
           id="skills"
-          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -281,7 +286,7 @@ export default function Home() {
         {/* Projects Section */}
         <motion.section
           id="projects"
-          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-16 border-b border-neutral-800 scroll-mt-26"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -298,7 +303,31 @@ export default function Home() {
               className="border border-accent2 rounded-full px-4 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-accent2/50 w-full sm:w-64 mb-5 sm:mb-0"
             />
             <div className="flex flex-wrap gap-2 mt-2 sm:mt-2 ml-0 sm:ml-3">
-              {allTags.map(tag => (
+              {/* Grouped tags (type/format) */}
+              {allTags.slice(0, tagPriority.filter(tag => allTagsSet.has(tag)).length).map(tag => (
+                <button
+                  key={tag}
+                  className={[
+                    'border px-3 py-1 rounded-full text-xs font-semibold transition-colors',
+                    'border-accent2',
+                    'hover:brightness-110',
+                  ].join(' ')}
+                  style={selectedTags.includes(tag)
+                    ? { background: 'var(--accent2)', color: 'var(--background)' }
+                    : { background: 'var(--background)', color: 'var(--accent2)' }}
+                  onClick={e => {
+                    setSelectedTags(selectedTags.includes(tag)
+                      ? selectedTags.filter(t => t !== tag)
+                      : [...selectedTags, tag]);
+                    e.currentTarget.blur();
+                  }}
+                  type="button"
+                >
+                  {tag}
+                </button>
+              ))}
+              {/* Other tags (fields) */}
+              {allTags.slice(tagPriority.filter(tag => allTagsSet.has(tag)).length).map(tag => (
                 <button
                   key={tag}
                   className={[
@@ -328,27 +357,31 @@ export default function Home() {
               <div className="col-span-full text-center text-accent2">No projects found.</div>
             )}
             {projectsToShow.map((project, idx) => (
-              <div key={project.title + idx} className="rounded-lg p-0 bg-[#070d16] shadow-md flex flex-row h-48 overflow-hidden">
-                {/* Left: Info */}
-                <div className="basis-2/3 flex flex-col gap-2 px-8 py-4 justify-center">
+              <div key={project.title + idx} 
+                className="rounded-lg p-0 bg-white/5 shadow-md flex flex-row sm:h-48 h-auto overflow-hidden sm:flex-row flex-col items-stretch"
+              >
+                {/* Info Section: full width on mobile, 2/3 on desktop */}
+                <div
+                  className="sm:basis-2/3 flex flex-col gap-2 sm:px-8 sm:py-4 px-6 py-6 justify-center items-center sm:items-start text-center sm:text-left flex-1"
+                >
                   <h3 className="font-semibold text-lg project-title">{project.title}</h3>
-                  <div className="flex flex-wrap gap-1 mb-1">
+                  <div className="flex flex-wrap gap-1 mb-1 justify-center sm:justify-start">
                     {project.tags.map(tag => (
                       <span key={tag} className="px-2 py-0.5 rounded-full border border-accent2 text-accent2 text-xs font-semibold bg-background/80">{tag}</span>
                     ))}
                   </div>
                   <p className="text-sm">{project.description}</p>
                   {project.links && project.links.length > 0 && (
-                    <div className="flex gap-2 mt-2 flex-wrap">
+                    <div className="flex gap-2 mt-2 flex-wrap justify-center sm:justify-start">
                       {project.links.map(link => (
                         <a key={link.label} href={link.url} className="project-link text-accent2 text-sm font-medium" target="_blank" rel="noopener noreferrer">{link.label}</a>
                       ))}
                     </div>
                   )}
                 </div>
-                {/* Right: Image */}
-                <div className="basis-1/3 h-full flex items-center justify-center bg-neutral-900/40 relative">
-                  {project.image ? (
+                {/* Image: only show on sm and up */}
+                {project.image && (
+                  <div className="hidden sm:flex basis-1/3 h-full items-center justify-center bg-[#070d16] relative">
                     <Image
                       src={project.image}
                       alt={project.title + ' image'}
@@ -356,8 +389,8 @@ export default function Home() {
                       className="object-cover w-full h-full rounded-r-lg"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
-                  ) : null}
-                </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -380,7 +413,7 @@ export default function Home() {
         {/* Experience Section */}
         <motion.section
           id="experience"
-          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -403,7 +436,7 @@ export default function Home() {
         {/* Contact Section */}
         <motion.section
           id="contact"
-          className="w-full flex flex-col gap-4 py-8 scroll-mt-24"
+          className="w-full flex flex-col gap-4 py-8 scroll-mt-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
