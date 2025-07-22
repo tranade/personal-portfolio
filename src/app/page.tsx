@@ -25,8 +25,104 @@ const socialLinks = [
   { href: "https://devpost.com/tanviranade", label: "Devpost" },
 ];
 
+// --- PROJECTS DATA ---
+const allProjects = [
+  {
+    title: "PlatePal",
+    description: "A nutrition and meal planning app.",
+    tags: ["sustainability", "website", "hackathon"],
+    image: undefined, // Add image path if available
+    links: [
+      { label: "GitHub", url: "https://github.com/tranade/platepal" },
+      { label: "Live Demo", url: "#" },
+    ],
+  },
+  {
+    title: "MindMatch",
+    description: "Coming soon!",
+    tags: ["healthcare", "mobile app"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "TerraVision Technologies",
+    description: "A full-stack mapping and visualization tool.",
+    tags: ["sustainability", "website", "hackathon"],
+    image: undefined,
+    links: [
+      { label: "Backend", url: "#" },
+      { label: "Frontend", url: "#" },
+    ],
+  },
+  {
+    title: "Brody Cafe App",
+    description: "Online ordering and cafe management app for JHU's beloved Brody Cafe.",
+    tags: ["local business", "mobile app"],
+    image: "/brodyapp.png",
+    links: [],
+  },
+  {
+    title: "SRT Controller",
+    description: "Astronomy website for controlling the SRT.",
+    tags: ["astronomy", "website"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "InFluo",
+    description: "Healthcare medical device data analysis.",
+    tags: ["healthcare", "medical device", "data analysis"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "iMEDS",
+    description: "Healthcare medical device.",
+    tags: ["healthcare", "medical device"],
+    image: undefined,
+    links: [],
+  },
+  {
+    title: "SoleSense",
+    description: "Early detection of diabetic foot ulcers.",
+    tags: ["healthcare", "medical device", "data analysis"],
+    image: "/solesense.png",
+    links: [],
+  },
+];
+
 export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false);
+
+  // --- PROJECTS FILTER STATE (moved inside component) ---
+  const allTags = Array.from(new Set(allProjects.flatMap(p => p.tags)));
+  const [search, setSearch] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const filteredProjects = allProjects.filter(project => {
+    const matchesSearch =
+      project.title.toLowerCase().includes(search.toLowerCase()) ||
+      project.description.toLowerCase().includes(search.toLowerCase()) ||
+      project.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()));
+    const matchesTags =
+      selectedTags.length === 0 || selectedTags.every(tag => project.tags.includes(tag));
+    return matchesSearch && matchesTags;
+  });
+
+  // Only show these 4 by default, in this order
+  const initialProjectTitles = [
+    "Brody Cafe App",
+    "SoleSense",
+    "PlatePal",
+    "SRT Controller",
+  ];
+  const initialProjects = initialProjectTitles
+    .map(title => filteredProjects.find(p => p.title === title))
+    .filter(Boolean);
+  const isFiltering = search.trim() !== '' || selectedTags.length > 0;
+  const projectsToShow = isFiltering
+    ? filteredProjects
+    : (showAllProjects ? filteredProjects : initialProjects).filter((p): p is typeof allProjects[number] => !!p);
 
   useEffect(() => {
     const onScroll = () => {
@@ -151,7 +247,7 @@ export default function Home() {
         {/* About Section */}
         <motion.section
           id="about"
-          className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -161,13 +257,13 @@ export default function Home() {
           <div className="font-tech-heading text-accent1 text-lg sm:text-xl" style={{ letterSpacing: '0.18em' }}>
             JHU &apos;26 • BS in CS + BME • 3 + 1 MSE in CS
           </div>
-          <p className="text-base">Hi! I&apos;m an incoming senior at JHU interested in software engineering, AI/ML, data science, and medical applications. I&apos;m currently a SWE Intern for AWS Redshift, where I am working on developing a GenAI project employing multi-agent orchestration with Strands. Last summer I was at Aryn (startup), where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper.</p>
+          <p className="text-base">Hi! I&apos;m an incoming senior at JHU interested in software engineering, AI/ML, data science, and medical applications. I&apos;m currently a SWE Intern for AWS Redshift, working on a GenAI project employing multi-agent orchestration through Strands. Last summer I was at Aryn (startup), where I developed an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper.</p>
           <p className="text-base">On campus, I&apos;m involved with WiCS@JHU, Camp Kesem, and Blue Jay Bhangra (💃). I also do applied machine learning research through Dr. Suchi Saria&apos;s lab for AI/ML in Healthcare!</p>
         </motion.section>
         {/* Skills Section */}
         <motion.section
           id="skills"
-          className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -185,44 +281,106 @@ export default function Home() {
         {/* Projects Section */}
         <motion.section
           id="projects"
-          className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Projects</h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg project-title">PlatePal</h3>
-              <p className="text-sm">A nutrition and meal planning app.</p>
-              <div className="flex gap-2 mt-2">
-                <a href="https://github.com/tranade/platepal" className="project-link text-accent2 text-sm font-medium" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="#" className="project-link text-accent2 text-sm font-medium">Live Demo</a>
-              </div>
-            </div>
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg project-title">TerraVision</h3>
-              <p className="text-sm">A full-stack mapping and visualization tool.</p>
-              <div className="flex gap-2 mt-2">
-                <a href="#" className="project-link text-accent2 text-sm font-medium">Backend</a>
-                <a href="#" className="project-link text-accent2 text-sm font-medium">Frontend</a>
-              </div>
-            </div>
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg project-title">MindMatch</h3>
-              <p className="text-sm">Coming soon!</p>
-            </div>
-            <div className="rounded-lg border border-neutral-800 p-4 bg-background flex flex-col gap-2">
-              <h3 className="font-semibold text-lg project-title">HealthTrackr</h3>
-              <p className="text-sm">A health and fitness dashboard.</p>
+          {/* Search and Tag Filters */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center mb-4">
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="border border-accent2 rounded-full px-4 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-accent2/50 w-full sm:w-64 mb-5 sm:mb-0"
+            />
+            <div className="flex flex-wrap gap-2 mt-2 sm:mt-2 ml-0 sm:ml-3">
+              {allTags.map(tag => (
+                <button
+                  key={tag}
+                  className={[
+                    'border px-3 py-1 rounded-full text-xs font-semibold transition-colors',
+                    'border-accent2',
+                    'hover:brightness-110',
+                  ].join(' ')}
+                  style={selectedTags.includes(tag)
+                    ? { background: 'var(--accent2)', color: 'var(--background)' }
+                    : { background: 'var(--background)', color: 'var(--accent2)' }}
+                  onClick={e => {
+                    setSelectedTags(selectedTags.includes(tag)
+                      ? selectedTags.filter(t => t !== tag)
+                      : [...selectedTags, tag]);
+                    e.currentTarget.blur();
+                  }}
+                  type="button"
+                >
+                  {tag}
+                </button>
+              ))}
             </div>
           </div>
+          {/* Projects Grid */}
+          <div className="grid gap-6 sm:grid-cols-2">
+            {projectsToShow.length === 0 && (
+              <div className="col-span-full text-center text-accent2">No projects found.</div>
+            )}
+            {projectsToShow.map((project, idx) => (
+              <div key={project.title + idx} className="rounded-lg p-0 bg-[#070d16] shadow-md flex flex-row h-48 overflow-hidden">
+                {/* Left: Info */}
+                <div className="basis-2/3 flex flex-col gap-2 px-8 py-4 justify-center">
+                  <h3 className="font-semibold text-lg project-title">{project.title}</h3>
+                  <div className="flex flex-wrap gap-1 mb-1">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="px-2 py-0.5 rounded-full border border-accent2 text-accent2 text-xs font-semibold bg-background/80">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="text-sm">{project.description}</p>
+                  {project.links && project.links.length > 0 && (
+                    <div className="flex gap-2 mt-2 flex-wrap">
+                      {project.links.map(link => (
+                        <a key={link.label} href={link.url} className="project-link text-accent2 text-sm font-medium" target="_blank" rel="noopener noreferrer">{link.label}</a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {/* Right: Image */}
+                <div className="basis-1/3 h-full flex items-center justify-center bg-neutral-900/40 relative">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title + ' image'}
+                      fill
+                      className="object-cover w-full h-full rounded-r-lg"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Show All / Show Less Button (only when not filtering) */}
+          {!isFiltering && filteredProjects.length > initialProjects.length && (
+            <div className="w-full flex justify-center mt-6">
+              <button
+                className="px-3 py-1 rounded-full border border-accent2 text-accent2 bg-background hover:bg-accent2/20 font-semibold transition-colors text-sm"
+                onClick={e => {
+                  setShowAllProjects(v => !v);
+                  e.currentTarget.blur();
+                }}
+                type="button"
+              >
+                {showAllProjects ? 'Show Less' : 'Show All Projects'}
+              </button>
+            </div>
+          )}
         </motion.section>
         {/* Experience Section */}
         <motion.section
           id="experience"
-          className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
+          className="w-full flex flex-col gap-4 pt-8 pb-12 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
