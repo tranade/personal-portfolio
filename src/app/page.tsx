@@ -94,7 +94,7 @@ export default function Home() {
         {/* Mobile hamburger */}
         <MobileNav navSections={navSections} />
       </nav>
-      <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-20 pb-20 px-4">
+      <main className="w-full max-w-2xl mx-auto flex-1 flex flex-col items-center justify-center gap-12 pb-20 px-4">
         {/* Hero Section */}
         <section className="flex flex-col items-center gap-6 min-h-[calc(80vh-96px)] justify-center w-full">
           <Image src="/profile.jpg" alt="Tanvi Ranade profile" width={120} height={120} className="rounded-full object-cover w-32 h-32 border-2 border-accent2" />
@@ -154,14 +154,15 @@ export default function Home() {
           className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">About</h2>
           <div className="font-tech-heading text-accent1 text-lg sm:text-xl" style={{ letterSpacing: '0.18em' }}>
             JHU &apos;26 • BS in CS + BME • 3 + 1 MSE in CS
           </div>
-          <p className="text-base">Hi! I&apos;m a 3rd year undergraduate interested in software engineering, AI/ML, data science, and medical applications. This past summer I interned at Aryn, where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper. I&apos;m currently improving a website for the JHU Physics &amp; Astronomy and on the student developer team for Semester.ly. In the past I worked on an iOS and Android app for dearYou Health, and have had experience working as an R&amp;D intern at CurveAssure as a Full-Stack Software Developer. On campus, I&apos;m the president of WiCS@JHU, a counselor for Camp Kesem, and on a dance team, Blue Jay Bhangra. Recently, I joined Dr. Suchi Saria&apos;s lab for Machine Learning in Healthcare. I&apos;m also currently an Intro Algorithms TA and have previously been one for Data Structures and Intermediate Programming (C/C++).</p>
+          <p className="text-base">Hi! I&apos;m an incoming senior at JHU interested in software engineering, AI/ML, data science, and medical applications. I&apos;m currently a SWE Intern for AWS Redshift, where I am working on developing a GenAI project employing multi-agent orchestration with Strands. Last summer I was at Aryn (startup), where I worked on developing an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper.</p>
+          <p className="text-base">On campus, I&apos;m involved with WiCS@JHU, Camp Kesem, and Blue Jay Bhangra (💃). I also do applied machine learning research through Dr. Suchi Saria&apos;s lab for AI/ML in Healthcare!</p>
         </motion.section>
         {/* Skills Section */}
         <motion.section
@@ -169,7 +170,7 @@ export default function Home() {
           className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Skills</h2>
@@ -187,7 +188,7 @@ export default function Home() {
           className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Projects</h2>
@@ -224,7 +225,7 @@ export default function Home() {
           className="w-full flex flex-col gap-4 py-8 border-b border-neutral-800 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Experience</h2>
@@ -247,7 +248,7 @@ export default function Home() {
           className="w-full flex flex-col gap-4 py-8 scroll-mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Contact</h2>
