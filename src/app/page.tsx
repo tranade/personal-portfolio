@@ -276,7 +276,14 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Skills</h2>
           <ul className="flex flex-wrap gap-3">
-            {['JavaScript', 'HTML', 'CSS', 'TypeScript', 'React', 'Redux', 'Python', 'Java', 'C/C++', 'Databases', 'API Calls', 'Node.js', 'Express.js', 'Nest.js'].map(skill => (
+            {[
+              'Python', 'Java', 'JavaScript', 'HTML', 'CSS', 'TypeScript', 'React', 'Redux', 'C/C++',
+              'x86-64 Assembly', 'Arduino',
+              'Node.js', 'Express.js', 'Nest.js', 'Databases', 'API Calls',
+              'Docker', 'AWS', 'Google Firebase', 'OpenSearch',
+              'Figma', 'Git', 'GitHub', 'Visual Studio Code', 'IntelliJ IDEA',
+              'PyTorch', 'NumPy', 'Pandas'
+            ].map(skill => (
               <li key={skill} className="px-3 py-1 rounded-full border border-accent2 text-accent2 text-sm font-semibold bg-background/80">
                 {skill}
               </li>
@@ -286,7 +293,7 @@ export default function Home() {
         {/* Projects Section */}
         <motion.section
           id="projects"
-          className="w-full flex flex-col gap-4 pt-8 pb-16 border-b border-neutral-800 scroll-mt-26"
+          className="w-full flex flex-col gap-4 pt-8 pb-16 border-b border-neutral-800 scroll-mt-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
