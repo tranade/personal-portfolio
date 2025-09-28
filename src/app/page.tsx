@@ -454,7 +454,7 @@ export default function Home() {
             <div className="text-base">tranade1@jhu.edu</div>
               <div className="flex gap-4 mt-2">
               <a href="mailto:tranade1@jhu.edu" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" aria-label="Email" title="Email" target="_blank" rel="noopener noreferrer"><FiMail className="text-accent2 text-xl" /></a>
-              <a href="https://www.linkedin.com/in/tanviranade/" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><FaLinkedin className="text-accent2 text-xl" /></a>
+              <a href="https://www.linkedin.com/in/tanvi-ranade/" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><FaLinkedin className="text-accent2 text-xl" /></a>
               <a href="https://github.com/tranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><FaGithub className="text-accent2 text-xl" /></a>
               <a href="https://devpost.com/tanviranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="Devpost" title="Devpost"><SiDevpost className="text-accent2 text-xl" /></a>
               </div>
