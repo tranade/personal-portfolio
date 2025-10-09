@@ -19,7 +19,6 @@ const navSections = [
 
 const socialLinks = [
   { href: "/Tanvi_Ranade_Resume.pdf", label: "Resume" },
-  { href: "mailto:tranade1@jhu.edu", label: "Email" },
   { href: "https://www.linkedin.com/in/tanvi-ranade/", label: "LinkedIn" },
   { href: "https://github.com/tranade", label: "GitHub" },
   { href: "https://devpost.com/tanviranade", label: "Devpost" },
@@ -262,7 +261,7 @@ export default function Home() {
           <div className="font-tech-heading text-accent1 text-lg sm:text-xl" style={{ letterSpacing: '0.18em' }}>
             JHU &apos;26 • BS in CS + BME • 3 + 1 MSE in CS
           </div>
-          <p className="text-base">Hi! I&apos;m an incoming senior at JHU interested in software engineering, AI/ML, data science, and medical applications. I&apos;m currently a SWE Intern for AWS Redshift, working on a GenAI project employing multi-agent orchestration through Strands. Last summer I was at Aryn (startup), where I developed an LLM-based query planning and execution pipeline for analytics questions on unstructured data and co-authored a systems paper.</p>
+          <p className="text-base">Hi! I&apos;m a senior at JHU interested in software engineering, AI/ML, data science, and medical applications. Last summer, I was a SDE Intern for AWS Redshift, working on a GenAI project employing Strands Agents and MCP tools. Previously, I interned at Aryn (document intelligence startup), where I developed an LLM-based query planning/execution pipeline for unstructured document set analytics and co-authored a <a href="https://arxiv.org/abs/2409.00847" target="_blank" rel="noopener noreferrer" className="text-accent2 hover:text-accent1">systems paper</a>.</p>
           <p className="text-base">On campus, I&apos;m involved with WiCS@JHU, Camp Kesem, and Blue Jay Bhangra (💃). I also do applied machine learning research through Dr. Suchi Saria&apos;s lab for AI/ML in Healthcare!</p>
         </motion.section>
         {/* Skills Section */}
@@ -282,7 +281,7 @@ export default function Home() {
               'Node.js', 'Express.js', 'Nest.js', 'Databases', 'API Calls',
               'Docker', 'AWS', 'Google Firebase', 'OpenSearch',
               'Figma', 'Git', 'GitHub', 'Visual Studio Code', 'IntelliJ IDEA',
-              'PyTorch', 'NumPy', 'Pandas'
+              'PyTorch', 'NumPy', 'Pandas', 'SQL', 'MongoDB'
             ].map(skill => (
               <li key={skill} className="px-3 py-1 rounded-full border border-accent2 text-accent2 text-sm font-semibold bg-background/80">
                 {skill}
@@ -427,17 +426,18 @@ export default function Home() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Experience</h2>
-          <ul className="flex flex-col gap-2">
-            <li><span className="font-semibold">Aryn</span> — Software Engineering Intern (Summer 2023): Developed an LLM-based query planning and execution pipeline for analytics on unstructured data. Co-authored a systems paper.</li>
-            <li><span className="font-semibold">Semester.ly</span> — Student Developer (2023 - Present): Full-stack development for a course scheduling platform used by students at multiple universities.</li>
-            <li><span className="font-semibold">dearYou Health</span> — Mobile App Developer (2022): Developed an iOS and Android app for health and wellness.</li>
-            <li><span className="font-semibold">CurveAssure</span> — R&D Intern, Full-Stack SWE (2021): Worked on full-stack software for medical device analytics.</li>
-            <li><span className="font-semibold">JHU Physics & Astronomy</span> — Web Developer (2023 - Present): Improving and maintaining the department website.</li>
-            <li><span className="font-semibold">WiCS@JHU</span> — President (2023 - Present): Leading the Women in Computer Science chapter at JHU.</li>
-            <li><span className="font-semibold">Camp Kesem</span> — Counselor (2022 - Present): Counselor for a national nonprofit supporting children through and beyond a parent&apos;s cancer.</li>
-            <li><span className="font-semibold">Blue Jay Bhangra</span> — Dancer (2021 - Present): Member of JHU&apos;s competitive bhangra dance team.</li>
+          <ul className="flex flex-col gap-2">  
+            <li><span className="font-semibold">Bayesian Health</span> — Machine Learning Engineering Intern (2025 - Present): Develop, train, and evaluate various machine learning models for sepsis detection.</li>
+            <li><span className="font-semibold">AWS Redshift</span> — Software Engineering Intern (Summer 2025): Worked on a GenAI project employing Strands Agents and MCP tools.</li>
+            <li><span className="font-semibold">WiCS@JHU</span> — President (2024 - 2025): Leading the Women in Computer Science chapter at JHU.</li>
+            <li><span className="font-semibold">BME Design Team</span> — Co-leader (2024 - 2025): Leading undergraduate design team for diabetic foot ulcer medical device project.</li>
             <li><span className="font-semibold">JHU ML in Healthcare Lab</span> — Researcher (2024 - Present): Research in AI/ML for healthcare under Dr. Suchi Saria.</li>
-            <li><span className="font-semibold">Teaching Assistant (JHU)</span> (2022 - Present): Intro Algorithms, Data Structures, Intermediate Programming (C/C++).</li>
+            <li><span className="font-semibold">Aryn</span> — Software Engineering Intern (Summer 2024): Developed an LLM-based query planning and execution pipeline for analytics on unstructured data. Co-authored a systems paper.</li>
+            <li><span className="font-semibold">JHU Physics & Astronomy</span> — Web Developer (2023 - 2025): Improve scheduling setup for website to remotely access Small Remote Telescope.</li>
+            <li><span className="font-semibold">Semester.ly</span> — Student Developer (2023 - 2025): Full-stack development for a course scheduling platform used by JHU students.</li>
+            <li><span className="font-semibold">CurveAssure</span> — R&D Intern, (2022-2023): Worked on 3-D sensor data visualization platofrm using Python and Blender.</li>
+            <li><span className="font-semibold">Teaching Assistant (JHU)</span> (2022 - 2025): Intro Algorithms, Data Structures, Intermediate Programming (C/C++).</li>
+            <li><span className="font-semibold">dearYou Health</span> — Mobile App Developer (2022): Developed an iOS and Android app for mental health and wellness.</li>
           </ul>
         </motion.section>
         {/* Contact Section */}
@@ -451,9 +451,7 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold mb-2 tech-title tech-heading">Contact</h2>
           <div className="flex flex-col gap-2 items-center">
-            <div className="text-base">tranade1@jhu.edu</div>
               <div className="flex gap-4 mt-2">
-              <a href="mailto:tranade1@jhu.edu" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" aria-label="Email" title="Email" target="_blank" rel="noopener noreferrer"><FiMail className="text-accent2 text-xl" /></a>
               <a href="https://www.linkedin.com/in/tanvi-ranade/" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><FaLinkedin className="text-accent2 text-xl" /></a>
               <a href="https://github.com/tranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><FaGithub className="text-accent2 text-xl" /></a>
               <a href="https://devpost.com/tanviranade" className="social-link text-accent2 hover:underline text-sm font-medium inline-flex items-center" target="_blank" rel="noopener noreferrer" aria-label="Devpost" title="Devpost"><SiDevpost className="text-accent2 text-xl" /></a>
